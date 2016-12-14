@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    h2 Listado de asignaturas:
+    div(class='well')
+        table(class='table table-fixed')
+            thead
+                tr 
+                    th(class="col-xs-8") Nombre
+                    th(class="col-xs-2") Ciclo
+                    th(class="col-xs-1") Curso
+                    th(class="col-xs-1") Horas
+            tbody
+                each asignatura, i in asignaturaList
+                    tr
+                        td(class="col-xs-8") #{asignatura.nombre}
+                        td(class="col-xs-2") #{asignatura.curso}
+                        td(class="col-xs-1") #{asignatura.ciclo}
+                        td(class="col-xs-1") #{asignatura.horas}

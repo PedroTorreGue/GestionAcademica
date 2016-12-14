@@ -1,0 +1,53 @@
+extends layout
+
+block content
+  div(class="well")
+    Label() Buscador: 
+    input(type="text" id="buscador" onkeyup="buscar()" placeholder="Buscar por ")
+    table(class= "table")
+        tr
+            th Nombre Alumno
+            th Apellidos Alumno
+            th Ciclo
+            th Curso
+            th Asignatura
+        tr
+            td
+                input(type="radio" id="radioN" value="0" name="radio")
+            td
+                input(type="radio" id="radioAp" value="1" name="radio")
+            td
+                input(type="radio" id="radioCiclo" value="2" name="radio")
+            td
+                input(type="radio" id="radioCurso" value="3" name="radio")
+            td
+                input(type="radio" id="radioAsig" value="4" name="radio")
+    form(method='post')
+        table
+                tr
+                    td(class="col-xs-11")
+                        h2 Listado de Matrículas:
+                    td(class="col-xs-1")
+                        button(type='submit' class='btn btn-danger') Borrar selección
+        table(class="table table-fixed" id="datos")
+            thead
+                tr
+                        th(class="col-xs-2") Nombre Alumno
+                        th(class="col-xs-2") Apellidos Alumno
+                        th(class="col-xs-1") Ciclo
+                        th(class="col-xs-1") Curso
+                        th(class="col-xs-2") Nombre Asignatura
+                        th(class="col-xs-2") Fecha Inicio
+                        th(class="col-xs-2") Fecha Fin
+                        
+            tbody
+                each matricula, i in matriculaList
+                    tr(id='mat'+i)
+                        td(class="col-xs-2") #{matricula.alumno.nombre}
+                        td(class="col-xs-2") #{matricula.alumno.apellido}                    
+                        td(class="col-xs-1") #{matricula.asignatura.ciclo} 
+                        td(class="col-xs-1") #{matricula.asignatura.curso}
+                        td(class="col-xs-2") #{matricula.asignatura.nombre} 
+                        td(class="col-xs-2") #{matricula.inicio}
+                        td(class="col-xs-2") #{matricula.fin}            
+                       

@@ -1,0 +1,54 @@
+extends layout
+
+block content
+  div(class="well")
+    Label() Buscador: 
+    input(type="text" id="buscador" onkeyup="buscar()" placeholder="Buscar por ")
+    table(class= "table")
+        tr
+            th Nombre Profesor
+            th Apellidos Profesor
+            th Ciclo
+            th Curso
+            th Asignatura
+        tr
+            td
+                input(type="radio" id="radioN" value="0" name="radio")
+            td
+                input(type="radio" id="radioAp" value="1" name="radio")
+            td
+                input(type="radio" id="radioCiclo" value="2" name="radio")
+            td
+                input(type="radio" id="radioCurso" value="3" name="radio")
+            td
+                input(type="radio" id="radioAsig" value="4" name="radio")
+    form(method='post')
+        table
+                tr
+                    td(class="col-xs-11")
+                        h2 Listado de Asignaciones:
+                    td(class="col-xs-1")
+                        button(type='submit' class='btn btn-danger') Borrar selección
+        table(class="table table-fixed" id="datos")
+            thead
+                tr
+                        th(class="col-xs-2") Nombre Profesor
+                        th(class="col-xs-2") Apellidos Profesor
+                        th(class="col-xs-1") Ciclo
+                        th(class="col-xs-1") Curso
+                        th(class="col-xs-3") Nombre Asignatura
+                        th(class="col-xs-1") Fecha Inicio
+                        th(class="col-xs-1") Fecha Fin
+                        th(class="col-xs-1") Borrar
+            tbody
+                each asignacion, i in asignacionList
+                    tr(id='asi'+i)
+                        td(class="col-xs-2") #{asignacion.profesor.nombre}
+                        td(class="col-xs-2") #{asignacion.profesor.apellido}                    
+                        td(class="col-xs-1") #{asignacion.asignatura.ciclo} 
+                        td(class="col-xs-1") #{asignacion.asignatura.curso}
+                        td(class="col-xs-3") #{asignacion.asignatura.nombre} 
+                        td(class="col-xs-1") #{moment(asignacion.inicio).format("DD-MM-YYYY")}
+                        td(class="col-xs-1") #{moment(asignacion.fin).format("DD-MM-YYYY")}
+                        td(class="col-xs-1")
+                            input(type='checkbox' name='id' value="#{asignacion._id}" onclick="borrarAsi("+i+")")

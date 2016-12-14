@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h2 Listado de alumnos:
+  div(class='well')
+    form(method='post')
+        table
+                tr
+                    td(class="col-xs-11")
+                        h2 Listado de alumnos:
+                    td(class="col-xs-1")
+                        button(type='submit' class='btn btn-danger') Borrar selección
+        table(class='table table-fixed')
+            thead
+                tr
+
+                    th(class="col-xs-1") ID
+                    th(class="col-xs-2") Nombre
+                    th(class="col-xs-4") Apellido
+                    th(class="col-xs-4") email
+                    th(class="col-xs-1")
+            tbody
+                each alumno, i in alumnoList
+                    tr(id='alum'+i)
+                        td(class="col-xs-1") #{alumno.id}    
+                        td(class="col-xs-2") #{alumno.nombre}  
+                        td(class="col-xs-4") #{alumno.apellido}
+                        td(class="col-xs-4") #{alumno.email}
+                        td(class="col-xs-1") 
+                            input(type='checkbox' name='id' value="#{alumno._id}" onclick="borrarAl("+i+")")

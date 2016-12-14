@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    table(class='table')
+    form(method='post')
+        div(class='form-group')
+            label(for='nombre') Nombre:
+            input(name='nombre',class='form-control',type='text',required) 
+        div(class='form-group')
+            label(for='ciclo') Ciclo:
+            input(name='ciclo',class='form-control',type='text',required)
+        div(class='form-group')
+            label(for='curso') Curso:
+            select(name='curso',class='selectpicker' required)
+                option(value=1) 1
+                option(value=2) 2
+                option(value=3) 3
+        div(class='form-group')
+            label(for='horas') Horas:
+            input(name='horas',class='form-control',type='number',required min=1) 
+        div(class='form-group')
+            button(type='submit') Enviar
+

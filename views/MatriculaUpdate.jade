@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  h2 Listado de matrículas:
+  div(class="well")
+    Label() Buscador: 
+    input(type="text" id="buscador" onkeyup="buscar()" placeholder="Buscar por ")
+    table(class= "table")
+        tr
+            th Nombre Alumno
+            th Apellidos Alumno
+            th Ciclo
+            th Curso
+            th Asignatura
+        tr
+            td
+                input(type="radio" id="radioN" value="0" name="radio")
+            td
+                input(type="radio" id="radioAp" value="1" name="radio")
+            td
+                input(type="radio" id="radioCiclo" value="2" name="radio")
+            td
+                input(type="radio" id="radioCurso" value="3" name="radio")
+            td
+                input(type="radio" id="radioAsig" value="4" name="radio")
+
+    table(class="table table-fixed" id="datos")
+        thead
+            tr
+                    th(class="col-xs-2") Nombre Alumno
+                    th(class="col-xs-3") Apellidos Alumno
+                    th(class="col-xs-3") Nombre, Ciclo y curso de la Asignatura
+                    th(class="col-xs-2") Fecha Inicio
+                    th(class="col-xs-2") Actualizar
+        tbody
+            each matricula, i in matriculaList
+                tr(id='matUpdate'+i)
+                    td(class="col-xs-2") #{matricula.alumno.nombre}
+                    td(class="col-xs-3") #{matricula.alumno.apellido}                    
+                    td(class="col-xs-3") 
+                        select(class="selectpicker" name='asignatura' id='matAsig'+i)
+                            each asignatura, i in asignaturaList
+                                option(value='#{asignatura._id}') #{asignatura.nombre} -#{asignatura.ciclo}- :#{asignatura.curso}
+                                    if matricula.asignatura.nombre == asignatura.nombre
+                                        option(value='#{asignatura._id}' selected='selected') #{asignatura.nombre} -#{asignatura.ciclo}- :#{asignatura.curso}
+                    td(class="col-xs-2")
+                        input(name='inicio',id='fechaInicio'+i value='#{matricula.fechaInicio}' class='form-control',type='number' placeholder="2016" min='2016' disabled='true') 
+                    td(class="col-xs-2")
+                        input(type='checkbox' name='_id' value="#{matricula._id}" onClick='desbloquearMat('+i+')')
+ 

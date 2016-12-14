@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h2 Listado de alumnos:
+  div(class='well')
+    form(method='post')
+        table(class='fixed_headers table')
+            thead
+                tr
+
+                    th ID
+                    th Nombre
+                    th Apellido
+                    th email
+                    th
+            tbody
+                each alumno, i in alumnoList
+                    tr
+                        td #{alumno.id}    
+                        td #{alumno.nombre}  
+                        td #{alumno.apellido}
+                        td #{alumno.email}
+                        td 
+                            input(type='checkbox' name='id' value="#{alumno._id}")
+               
+
+        button(type='submit' class='btn btn-danger') BORRAR SELECCIÓN

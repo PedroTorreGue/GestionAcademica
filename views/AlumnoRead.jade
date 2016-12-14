@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  h2 Listado de alumnos:
+  div(class='well')
+    Label() Buscador: 
+    input(type="text" id="buscador" onkeyup="buscar()" placeholder="Buscar por ")
+    table(class= "table")
+        tr
+            th Nombre Alumno
+            th Apellidos Alumno
+        tr
+            td
+                input(type="radio" id="radioN" value="0" name="radio")
+            td
+                input(type="radio" id="radioAp" value="1" name="radio")
+
+    table(class='table table-fixed')
+        thead
+            tr
+                    th(class="col-xs-2") ID
+                    th(class="col-xs-2") Nombre
+                    th(class="col-xs-4") Apellido
+                    th(class="col-xs-4") Email
+        tbody
+            each alumno, i in alumnoList
+                tr
+                    td(class="col-xs-2") #{alumno.id}
+                    td(class="col-xs-2") #{alumno.nombre}  
+                    td(class="col-xs-4") #{alumno.apellido}
+                    td(class="col-xs-4") #{alumno.email}
+                        
+                    

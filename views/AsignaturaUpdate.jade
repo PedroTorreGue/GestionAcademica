@@ -1,0 +1,44 @@
+extends layout
+
+block content
+    
+    div(class='well')
+        form(method='post')
+            table
+                tr
+                    td(class="col-xs-11")
+                        h2 Listado de asignaturas:
+                    td(class="col-xs-1")
+                        button(type='submit' class='btn btn-success') actualizar seleccion
+            table(class='table table-fixed')
+                thead
+                    tr
+                        th(class="col-xs-8") Nombre
+                        th(class="col-xs-1") Ciclo
+                        th(class="col-xs-1") Curso
+                        th(class="col-xs-1") Horas                    
+                        th(class="col-xs-1") Actualizar
+                tbody
+                    each asignatura, i in asignaturaList
+                        tr(id="asig"+i)
+                            td(class="col-xs-8")
+                                input(type='text' name='nombre' id='nombre'+i value='#{asignatura.nombre}' disabled='true'  size='40' required)
+                            td(class="col-xs-1")
+                                input(type='text' name='ciclo' id='ciclo'+i value='#{asignatura.ciclo}' disabled='true'  size='5' required)
+                            td(class="col-xs-1")
+                                select(name='curso' id='curso'+i class='selectpicker' disabled='true' required)
+                                    option(value=1) 1                                
+                                        if asignatura.curso==1
+                                            option(value=1 selected='selected') 1
+                                    option(value=2) 2
+                                        if asignatura.curso==2
+                                            option(value=1 selected='selected') 2
+                                    option(value=3) 3
+                                        if asignatura.curso==3
+                                            option(value=1 selected='selected') 3
+                            td(class="col-xs-1")    
+                                input(type='text' name='horas' id='horas'+i value='#{asignatura.horas}' disabled='true'  size='5' required)
+                            td(class="col-xs-1") 
+                                input(type='checkbox' name='_id' value="#{asignatura._id}" onClick='desbloquearAs('+i+')')
+                            td
+                                input(type='hidden' name='iden' id='_id'+i value='#{asignatura._id}' disabled='false')

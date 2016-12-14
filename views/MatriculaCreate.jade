@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h2 matriculacion de alumnos:
+  div(class='well')
+    table(class='table')
+        tr
+            th alumno
+            th asignatura
+            th Curso Escolar
+            th matricular
+        tr
+            form(method='post')
+                td 
+                    select(class="selectpicker" name='alumno')
+                        each alumno, i in alumnoList
+                            option(value='#{alumno._id}') #{alumno.nombre} #{alumno.apellido}
+                
+                td          
+                    select(class="selectpicker" name='asignatura')
+                        each asignatura, i in asignaturaList
+                            option(value='#{asignatura._id}') #{asignatura.nombre} -#{asignatura.ciclo}- :#{asignatura.curso}
+                td
+                    input(name='inicio',id='fechaInicio'+i class='form-control',type='number' placeholder="2016" min='2016') 
+                td 
+                    button(name='mat' class='btn btn-success' type='submit') matricular

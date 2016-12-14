@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h2 asignación de profesores:
+  div(class='well')
+    table(class='table')
+        tr
+            th Profesor
+            th asignatura
+            th Curso Escolar
+            th Asignar
+        tr
+            form(method='post')
+                td 
+                    select(class="selectpicker" name='profesor')
+                        each profesor, i in profesorList
+                            option(value='#{profesor._id}') #{profesor.nombre} #{profesor.apellido}
+                
+                td          
+                    select(class="selectpicker" name='asignatura')
+                        each asignatura, i in asignaturaList
+                            option(value='#{asignatura._id}') #{asignatura.nombre} -#{asignatura.ciclo}- :#{asignatura.curso} , horas: #{asignatura.horas}
+                td
+                    input(name='inicio',id='fechaInicio'+i class='form-control',type='number' placeholder="2016" min='2016') 
+                td 
+                    button(name='asi' class='btn btn-success' type='submit') Asignar

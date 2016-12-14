@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  h2 Listado de matrículas:
+  div(class="well")
+    Label() Buscador: 
+    input(type="text" id="buscador" onkeyup="buscar()" placeholder="Buscar por ")
+    table(class= "table")
+        tr
+            th Nombre Alumno
+            th Apellidos Alumno
+            th Ciclo
+            th Curso
+            th Asignatura
+        tr
+            td
+                input(type="radio" id="radioN" value="0" name="radio")
+            td
+                input(type="radio" id="radioAp" value="1" name="radio")
+            td
+                input(type="radio" id="radioCiclo" value="2" name="radio")
+            td
+                input(type="radio" id="radioCurso" value="3" name="radio")
+            td
+                input(type="radio" id="radioAsig" value="4" name="radio")
+
+    table(class="table table-fixed" id="datos")
+        thead
+            tr
+                    th(class="col-xs-1") Nombre Alumno
+                    th(class="col-xs-2") Apellidos Alumno
+                    th(class="col-xs-1") Ciclo
+                    th(class="col-xs-1") Curso
+                    th(class="col-xs-3") Nombre Asignatura
+                    th(class="col-xs-2") Fecha Inicio
+                    th(class="col-xs-2") Fecha Fin
+        tbody
+            each matricula, i in matriculaList
+                tr
+                    td(class="col-xs-1") #{matricula.alumno.nombre}
+                    td(class="col-xs-2") #{matricula.alumno.apellido}                    
+                    td(class="col-xs-1") #{matricula.asignatura.ciclo} 
+                    td(class="col-xs-1") #{matricula.asignatura.curso}
+                    td(class="col-xs-3") #{matricula.asignatura.nombre} 
+                    td(class="col-xs-2") #{moment(matricula.inicio).format("DD-MM-YYYY")}
+                    td(class="col-xs-2") #{moment(matricula.fin).format("DD-MM-YYYY")}

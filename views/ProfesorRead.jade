@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h2 Listado de profesores:
+  div(class='well')
+    table(class='table table-fixed')
+        thead
+            tr
+                    th(class="col-xs-2") ID
+                    th(class="col-xs-2") Nombre
+                    th(class="col-xs-4") Apellido
+                    th(class="col-xs-4") Email
+        tbody
+            each profesor, i in profesorList
+                tr
+                    td(class="col-xs-2") #{profesor.id}
+                    td(class="col-xs-2") #{profesor.nombre}  
+                    td(class="col-xs-4") #{profesor.apellido}
+                    td(class="col-xs-4") #{profesor.email}
+                        
+                    
